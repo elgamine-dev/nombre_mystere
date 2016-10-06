@@ -8,7 +8,7 @@ function pied(){
 		var aleatoire = Math.round(Math.random() * 1000 - 1 );
 
 		if (aleatoire === input) {
-			alert('gagné!');
+			alert('gagné!'); 
 		}
 		else if (aleatoire > input) {
 			alert('Perdu , votre nombre est trop grand!');
