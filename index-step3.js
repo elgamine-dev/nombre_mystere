@@ -2,33 +2,72 @@ $(document).ready(main);
 
 // Fonction principale
 function main(){
-
+	console.log('hello')
 	// Créer et initialiser une variable 'globale' qui 
 	// va stocker le nombre de tentatives restantes.
-	var tentative = 3;
-	console.log(tentative);
-
+	var tentative;
 	// Créer et initialiser une variable 'globale' qui 
 	// va stocker le nombre "aléatoire" mystère.
-	var mystere = (parseInt(Math.random()*10));
-	console.log(mystere);
+	var mystere; 
+	// = (parseInt(Math.random()* 50),10);
 
-	function reinitialiser() {
-
+	function demarrerPartie (){
+		tentative = 3;
+		$('#tentative').text(tentative);
 		
-		// body...
+		mystere = Math.floor(Math.random() * 50);
+		console.log(mystere);
 	}
+
+		demarrerPartie()
+		
+		$('button').click(function() {
+			clickValider();
+
+		});
 
 	function clickValider() {
 
-		var input = $('input').val(); 
+		var input = parseInt($('input').val(),10); 
 
-				if (input === mystere) {
-				alert("Gagne!");
+		if (partieGagnee()) {
+			alert('Gagne!');
+			demarrerPartie();
 
-				}
-	  }
-	}
+		} else if (partiePerdue()) {
+			alert('Perdu');
+			demarrerPartie();
+
+		} else if(input > mystere){
+			alert('Perdu , votre nombre est trop grand!');
+			tentative --;
+			$('#tentative').text(tentative);
+
+		} else {
+			alert('Perdu, votre nombre est trop petit!');
+			tentative --;
+			$('#tentative').text(tentative);
+		}
+
+
+		function partieGagnee() {
+			return input === mystere;
+		}
+
+
+		function partiePerdue() {
+			return tentative === 0;
+
+		}
+
+		// else if (mystere === 0) {
+		}
+		// 	alert('Perdu');
+	}	
+
+
+
+
 	// == Fonction clickValider == 
 	// Créer la fonction 'clickValider'
 
@@ -39,7 +78,7 @@ function main(){
 				Si le contenu est égal : 
 				- afficher une alert Gagné
 				- démarrer une nouvelle partie
-			*/
+				*/
 
 			// Sinon s'il est supérieur
 			// Afficher une alert Perdu, votre nombre est trop grand
@@ -58,8 +97,8 @@ function main(){
 			 	- démarrer une nouvelle partie
 			 		+ remettre le nombre de tentatives à sa valeur initiale
 			 		+ générer un nouveau nombre mystère
-			 */
-			
+			 		*/
+
 	// /Fin == Fonction clickValider == 
 
 
@@ -73,9 +112,7 @@ function main(){
 		- créer une fonction 'demarrerPartie'
 		- créer une fonction 'partieGagnee'
 		- créer une fonction 'partiePerdue'
-	*/
-}
-	
+		*/
 
 
 
@@ -208,6 +245,7 @@ function main(){
 
 
 
-	
+
+
 
 
